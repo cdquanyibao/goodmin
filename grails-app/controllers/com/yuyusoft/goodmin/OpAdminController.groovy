@@ -46,7 +46,7 @@ class OpAdminController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'opAdmin.label', default: 'OpAdmin'), opAdminInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'opAdmin.label', default: 'OpAdmin'), opAdminInstance])
                 redirect opAdminInstance
             }
             '*' { respond opAdminInstance, [status: CREATED] }
@@ -79,7 +79,7 @@ class OpAdminController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'OpAdmin.label', default: 'OpAdmin'), opAdminInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'opAdmin.label', default: 'OpAdmin'), opAdminInstance])
                 redirect opAdminInstance
             }
             '*' { respond opAdminInstance, [status: OK] }
@@ -104,7 +104,7 @@ class OpAdminController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'OpAdmin.label', default: 'OpAdmin'), opAdminInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'opAdmin.label', default: 'OpAdmin'), opAdminInstance])
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }

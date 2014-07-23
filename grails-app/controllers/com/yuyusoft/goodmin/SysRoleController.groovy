@@ -35,11 +35,17 @@ class SysRoleController {
             return
         }
 
-        sysRoleInstance.save flush: true
+        try {
+            sysRoleInstance.save flush: true
+        } catch (Exception e) {
+            log.error(e.toString(), e)
+            respond sysRoleInstance.errors, view: 'create'
+            return
+        }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'sysRole.label', default: 'SysRole'), sysRoleInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'sysRole.label', default: 'SysRole'), sysRoleInstance.roleName])
                 redirect sysRoleInstance
             }
             '*' { respond sysRoleInstance, [status: CREATED] }
@@ -62,11 +68,18 @@ class SysRoleController {
             return
         }
 
-        sysRoleInstance.save flush: true
+        try {
+            sysRoleInstance.save flush: true
+        } catch (Exception e) {
+            log.error(e.toString(), e)
+            respond sysRoleInstance.errors, view: 'edit'
+            return
+        }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'SysRole.label', default: 'SysRole'), sysRoleInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'sysRole.label', default: 'SysRole'), sysRoleInstance.roleName])
+                log.error("msg>>>" + flash.message)
                 redirect sysRoleInstance
             }
             '*' { respond sysRoleInstance, [status: OK] }
@@ -81,11 +94,19 @@ class SysRoleController {
             return
         }
 
-        sysRoleInstance.delete flush: true
+        try {
+            sysRoleInstance.delete flush: true
+        } catch (Exception e) {
+            log.error(e.toString(), e)
+            println(">>> " + sysRoleInstance.errors)
+            flash.message = message(code: "default.goodmin.oper.delete.forbidden")
+            redirect(action: 'show', id: sysRoleInstance.id)
+            return
+        }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'SysRole.label', default: 'SysRole'), sysRoleInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'sysRole.label', default: 'SysRole'), sysRoleInstance.id])
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }

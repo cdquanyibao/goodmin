@@ -22,6 +22,10 @@ class OpAdmin {
         lastUpdated(nullable: true)
     }
 
+    String toString() {
+       "${realName} (${loginName})"
+    }
+
     String getStatusString() {
         return status == 1 ? "激活" : "未激活"
     }
