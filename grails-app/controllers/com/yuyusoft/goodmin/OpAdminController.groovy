@@ -6,9 +6,6 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class OpAdminController {
 
-    def scaffold = true
-
-/*
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -21,7 +18,10 @@ class OpAdminController {
     }
 
     def create() {
-        respond new OpAdmin(params)
+        def opAdminInstance = new OpAdmin(params)
+        // init status to 1
+        opAdminInstance.status = 1
+        respond opAdminInstance
     }
 
     @Transactional
@@ -102,5 +102,5 @@ class OpAdminController {
             '*' { render status: NOT_FOUND }
         }
     }
-*/
+
 }

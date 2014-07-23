@@ -277,7 +277,7 @@
                             <g:link controller="opAdmin" action="index"><i class="fa fa-user fa-fw"></i> ${message(code: 'default.goodmin.menu.system.administrator')}</g:link>
                         </li>
                         <li>
-                            <a href="morris.html">Morris.js Charts</a>
+                            <g:link controller="sysRole" action="index"><i class="fa fa-user fa-fw"></i> ${message(code: 'default.goodmin.menu.system.role')}</g:link>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

@@ -25,16 +25,18 @@
         <!-- /.row -->
 
         <div class="row">
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${opAdminInstance}">
-                <ul class="errors" role="alert">
-                    <g:eachError bean="${opAdminInstance}" var="error">
-                        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                    </g:eachError>
-                </ul>
-            </g:hasErrors>
+            <div class="col-lg-12">
+                <g:if test="${flash.message}">
+                    <div class="message" role="status">${flash.message}</div>
+                </g:if>
+                <g:hasErrors bean="${opAdminInstance}">
+                    <ul class="alert alert-danger" role="alert">
+                        <g:eachError bean="${opAdminInstance}" var="error">
+                            <li class="fa fa-warning" <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>> <g:message error="${error}"/></li>
+                        </g:eachError>
+                    </ul>
+                </g:hasErrors>
+            </div>
         </div>
         <!-- /.row -->
 

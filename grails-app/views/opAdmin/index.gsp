@@ -16,17 +16,19 @@
             <div class="col-lg-12">
                 <h3 class="page-header">
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-8">
                             <g:message code="default.list.label" args="[entityName]" />
                         </div>
-                        <div class="col-lg-2 text-right">
+                        <div class="col-lg-4 text-right">
                             <g:link controller="opAdmin" action="create" class="btn btn-primary"><g:message code="default.new.label" args="[entityName]" /></g:link>
+                            <button type="button" class="btn btn-success btn-outline" onclick="history.go(0)"><i class="fa fa-refresh"></i></button>
                         </div>
                     </div>
                 </h3>
             </div>
             <!-- /.col-lg-12 -->
         </div>
+
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">

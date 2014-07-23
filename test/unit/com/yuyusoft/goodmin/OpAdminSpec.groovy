@@ -16,5 +16,12 @@ class OpAdminSpec extends Specification {
     }
 
     void "test something"() {
+        def opAdminInstance = new OpAdmin(loginName: 'test', loginPWD: '123456', realName: 'test', status: 1)
+        opAdminInstance.save()
+        if (opAdminInstance.hasErrors()) {
+            println("error: " + opAdminInstance.errors)
+            return
+        }
+        println("md5: " + opAdminInstance.loginPWD)
     }
 }
