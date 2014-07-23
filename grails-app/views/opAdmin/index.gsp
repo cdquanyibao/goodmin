@@ -42,6 +42,7 @@
                                 <th>${message(code: 'opAdmin.loginPWD.label', default: 'Login PWD')}</th>
                                 <th>${message(code: 'opAdmin.realName.label', default: 'Real Name')}</th>
                                 <th>${message(code: 'opAdmin.status.label', default: 'Status')}</th>
+                                <th>${message(code: 'opAdmin.sysRole.label', default: 'Role')}</th>
                                 <th>${message(code: 'opAdmin.dateCreated.label', default: 'Date Created')}</th>
                                 <th>${message(code: 'opAdmin.lastUpdated.label', default: 'Last Updated')}</th>
                                 <th>${message(code: 'default.goodmin.table.option.header')}</th>
@@ -54,7 +55,8 @@
                                     <td>${fieldValue(bean: opAdminInstance, field: "loginName")}</td>
                                     <td>${fieldValue(bean: opAdminInstance, field: "loginPWD")}</td>
                                     <td>${fieldValue(bean: opAdminInstance, field: "realName")}</td>
-                                    <td>${fieldValue(bean: opAdminInstance, field: "status")}</td>
+                                    <td>${opAdminInstance.getStatusString()}</td>
+                                    <td>${opAdminInstance.sysRole}</td>
                                     <td><g:formatDate date="${opAdminInstance.dateCreated}" /></td>
                                     <td><g:formatDate date="${opAdminInstance.lastUpdated}" /></td>
                                     <td>

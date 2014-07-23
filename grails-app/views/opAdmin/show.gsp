@@ -16,7 +16,7 @@
                             ${opAdminInstance?.loginName}
                         </div>
                         <div class="col-lg-2 text-right">
-                            <g:link controller="opAdmin" action="index" class="btn btn-link">返回<g:message code="default.list.label" args="[entityName]" /></g:link>
+                            <g:link controller="opAdmin" action="index" class="btn btn-link"><g:message code="default.goodmin.page.back"/><g:message code="default.list.label" args="[entityName]" /></g:link>
                         </div>
                     </div>
                 </h3>
@@ -45,7 +45,13 @@
                             <g:if test="${opAdminInstance?.status}">
                                 <tr>
                                     <td class="col-lg-1 text-primary"><g:message code="opAdmin.status.label"/></td>
-                                    <td class="col-lg-5"><g:fieldValue bean="${opAdminInstance}" field="status"/></td>
+                                    <td class="col-lg-5">${opAdminInstance.getStatusString()}</td>
+                                </tr>
+                            </g:if>
+                            <g:if test="${opAdminInstance?.sysRole}">
+                                <tr>
+                                    <td class="col-lg-1 text-primary"><g:message code="opAdmin.sysRole.label"/></td>
+                                    <td class="col-lg-5"><g:fieldValue bean="${opAdminInstance}" field="sysRole"/></td>
                                 </tr>
                             </g:if>
                         </tbody>
@@ -55,10 +61,11 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-1">
-                <button type="button" class="btn btn-link" onclick="history.go(-1)">
+            <div class="col-sm-1 text-left">
+%{--                <button type="button" class="btn btn-link" onclick="history.go(-1)">
                     <i class="fa fa-angle-left"> ${message(code: 'default.goodmin.page.back')}</i>
-                </button>
+                </button>--}%
+                <g:link controller="opAdmin" action="index" class="btn btn-link"><i class="fa fa-angle-left"></i> <g:message code="default.goodmin.page.back"/></g:link>
             </div>
             <div class="col-sm-5">
                 <g:form url="[resource:opAdminInstance, action:'delete']" method="DELETE">

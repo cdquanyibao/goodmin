@@ -17,7 +17,7 @@
                         ${sysRoleInstance?.roleName}
                     </div>
                     <div class="col-lg-2 text-right">
-                        <g:link controller="sysRole" action="index" class="btn btn-link">返回<g:message code="default.list.label" args="[entityName]" /></g:link>
+                        <g:link controller="sysRole" action="index" class="btn btn-link"><g:message code="default.goodmin.page.back"/><g:message code="default.list.label" args="[entityName]" /></g:link>
                     </div>
                 </div>
             </h3>
@@ -51,9 +51,10 @@
 
     <div class="row">
         <div class="col-sm-1">
-            <button type="button" class="btn btn-link" onclick="history.go(-1)">
+%{--            <button type="button" class="btn btn-link" onclick="history.go(-1)">
                 <i class="fa fa-angle-left"> ${message(code: 'default.goodmin.page.back')}</i>
-            </button>
+            </button>--}%
+            <g:link controller="sysRole" action="index" class="btn btn-link"><i class="fa fa-angle-left"></i> <g:message code="default.goodmin.page.back"/></g:link>
         </div>
         <div class="col-sm-5">
             <g:form url="[resource:sysRoleInstance, action:'delete']" method="DELETE">

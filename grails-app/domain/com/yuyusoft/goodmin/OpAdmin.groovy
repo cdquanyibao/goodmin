@@ -22,6 +22,11 @@ class OpAdmin {
         lastUpdated(nullable: true)
     }
 
+    String getStatusString() {
+        return status == 1 ? "激活" : "未激活"
+    }
+
+
 //    def beforeInsert() {
 //        println(">>> beforeInsert: loginPWD=" + loginPWD)
 //        loginPWD = loginPWD.encodeAsMD5();

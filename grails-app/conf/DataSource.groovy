@@ -18,7 +18,7 @@ environments {
     development {
         dataSource {
 //            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            dbCreate = "create"
+            dbCreate = "update"
             url = "jdbc:mysql://localhost:3306/goodmin_dev?useUnicode=true&amp;characterEncoding=UTF-8"
         }
     }

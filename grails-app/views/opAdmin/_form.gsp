@@ -1,4 +1,4 @@
-<%@ page import="com.yuyusoft.goodmin.OpAdmin" %>
+<%@ page import="com.yuyusoft.goodmin.OpAdmin; com.yuyusoft.goodmin.SysRole" %>
 
 
 <div class="form-group">
@@ -31,6 +31,19 @@
                   optionKey="key" optionValue="value" />
     </div>
 </div>
+
+<div class="form-group">
+    <label for="sysRole" class="col-sm-1 control-label"><g:message code="opAdmin.sysRole.label" /></label>
+    <div class="col-sm-5">
+        <g:select name="sysRole" class="form-control"
+                  from="${SysRole.findAll()}"
+                  value="${opAdminInstance.sysRole?.id}"
+                  optionKey="id" optionValue="roleName"
+                  noSelection="${['null':'请选择']}"
+        />
+    </div>
+</div>
+
 
 %{--
 <div class="fieldcontain ${hasErrors(bean: opAdminInstance, field: 'loginName', 'error')} required">

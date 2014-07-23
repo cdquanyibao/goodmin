@@ -16,4 +16,8 @@ class SysRole {
         dateCreated(nullable: true)
         lastUpdated(nullable: true)
     }
+
+    String toString() {
+        return roleName;
+    }
 }

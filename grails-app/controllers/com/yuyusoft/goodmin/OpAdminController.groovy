@@ -36,7 +36,13 @@ class OpAdminController {
             return
         }
 
-        opAdminInstance.save flush: true
+        try {
+            opAdminInstance.save flush: true
+        } catch (Exception e) {
+            log.error(e.toString(), e)
+            respond opAdminInstance.errors, view: 'create'
+            return
+        }
 
         request.withFormat {
             form multipartForm {
@@ -63,7 +69,13 @@ class OpAdminController {
             return
         }
 
-        opAdminInstance.save flush: true
+        try {
+            opAdminInstance.save flush: true
+        } catch (Exception e) {
+            log.error(e.toString(), e)
+            respond opAdminInstance.errors, view: 'edit'
+            return
+        }
 
         request.withFormat {
             form multipartForm {
@@ -82,7 +94,13 @@ class OpAdminController {
             return
         }
 
-        opAdminInstance.delete flush: true
+        try {
+            opAdminInstance.delete flush: true
+        } catch (Exception e) {
+            log.error(e.toString(), e)
+            respond opAdminInstance.errors, view: 'index'
+            return
+        }
 
         request.withFormat {
             form multipartForm {
