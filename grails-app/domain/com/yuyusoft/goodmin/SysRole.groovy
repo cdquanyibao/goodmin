@@ -8,6 +8,8 @@ class SysRole {
     Date dateCreated
     Date lastUpdated
 
+    static hasMany = [sysPermits: SysPermit]
+
     static constraints = {
 
         roleName(blank: false, size: 0..100, unique: true)

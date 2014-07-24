@@ -17,8 +17,8 @@ hibernate {
 environments {
     development {
         dataSource {
-//            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            dbCreate = "update"
+            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+//            dbCreate = "update"
             url = "jdbc:mysql://localhost:3306/goodmin_dev?useUnicode=true&amp;characterEncoding=UTF-8"
         }
     }

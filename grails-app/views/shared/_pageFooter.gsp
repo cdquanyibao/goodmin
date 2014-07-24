@@ -46,18 +46,18 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
         $(document).ready(function() {
-            $('#dataTables-example').dataTable({
+            var t = $('#dataTables-example').dataTable({
                 "language": {
-                    "lengthMenu": "每页显示 _MENU_ 条记录",
-                    "zeroRecords": "对不起，没有记录！",
-                    "info": "第 _PAGE_ 页 / 共 _PAGES_ 页",
+                    "lengthMenu": "${message(code: 'default.goodmin.table.lengthMenu')}",
+                    "zeroRecords": "${message(code: 'default.goodmin.table.zeroRecords')}",
+                    "info": "${message(code: 'default.goodmin.table.info')}",
                     "infoEmpty": "",
                     "infoFiltered": "",
                     "paginate": {
                         "previous": "${message(code: 'default.paginate.prev')}",
                         "next": "${message(code: 'default.paginate.next')}"
                     },
-                    "search": "查找 "
+                    "search": "${message(code: 'default.goodmin.table.search')} "
                 },
                 "columnDefs": [ {
                     "targets": -1,

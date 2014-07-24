@@ -282,6 +282,15 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> ${message(code: 'default.goodmin.menu.config')}<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <g:link controller="sysPermit" action="index"><i class="fa fa-user fa-fw"></i> ${message(code: 'default.goodmin.menu.config.permit')}</g:link>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
                 <!-- ============= Goodmin end ============= -->
 
                 <li>
