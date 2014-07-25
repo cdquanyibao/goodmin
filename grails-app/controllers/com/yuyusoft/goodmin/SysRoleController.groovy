@@ -10,6 +10,55 @@ class SysRoleController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def configPermits(SysRole sysRoleInstance) {
+        println ">>> configPermits"
+        respond sysRoleInstance
+    }
+
+    @Transactional
+    def savePermits(SysRole sysRoleInstance) {
+        println ">>> ${sysRoleInstance.roleName}"
+        println ">>> params: " + params.toQueryString()
+
+        // clean all sysPermits of sysRoleInstance
+        sysRoleInstance.sysPermits = null
+
+        params.each {
+            println(">>> key=" + it.key + ", value=" + it.value)
+
+            if (it.value == "on") {
+
+                def sysPermitInstance = SysPermit.get(it.key)
+                println "get key >>> " + sysPermitInstance.permitName
+
+                sysRoleInstance.addToSysPermits(sysPermitInstance)
+            }
+        }
+
+        if (sysRoleInstance.hasErrors()) {
+            log.error(sysRoleInstance.errors)
+            respond sysRoleInstance.errors, view: 'show'
+            return
+        }
+
+        try {
+            sysRoleInstance.save flush: true
+        } catch (Exception e) {
+            log.error(e.toString(), e)
+            sysRoleInstance.errors.putAt("sysPermits", e)
+            respond sysRoleInstance.errors, view: 'show'
+            return
+        }
+
+        flash.message = message(code: "default.saved.message")
+
+        sysRoleInstance.sysPermits.each {
+            println("+++" + it.permitUrl)
+        }
+
+        redirect sysRoleInstance
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond SysRole.list(params), model: [sysRoleInstanceCount: SysRole.count()]

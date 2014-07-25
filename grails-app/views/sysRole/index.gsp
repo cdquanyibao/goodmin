@@ -26,6 +26,7 @@
                         <th>${message(code: 'sysRole.dateCreated.label', default: 'Date Created')}</th>
                         <th>${message(code: 'sysRole.lastUpdated.label', default: 'Last Updated')}</th>
                         <th>${message(code: 'default.goodmin.table.option.header')}</th>
+                        <th>${message(code: 'default.goodmin.table.option.header')}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,9 @@
                             <td><g:formatDate date="${sysRoleInstance.dateCreated}" /></td>
                             <td><g:formatDate date="${sysRoleInstance.lastUpdated}" /></td>
                             <td><g:render template="/shared/indexOperButtons" model="[instance: sysRoleInstance]"/></td>
+                            <td>
+                                <g:link controller="sysRole" action="configPermits" resource="${sysRoleInstance}" class="btn btn-success btn-outline btn-xs"><g:message code="sysPermit.view.configPermits.label" /></g:link>
+                            </td>
                         </tr>
                     </g:each>
                     </tbody>
