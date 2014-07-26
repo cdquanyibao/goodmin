@@ -28,6 +28,21 @@
                             <td class="col-lg-5"><g:fieldValue bean="${sysRoleInstance}" field="description"/></td>
                         </tr>
                     </g:if>
+                    <g:if test="${sysRoleInstance?.sysPermits}">
+                        <tr>
+                            <td class="col-lg-1 text-primary"><g:message code="sysRole.sysPermits.label"/></td>
+                            <td class="col-lg-5">
+                                <g:each in="${sysRoleInstance.sysPermits}" var="sysPermitInstance">
+                                    <g:if test="${sysPermitInstance.level == 0}">| </g:if>
+                                    <g:if test="${sysPermitInstance.level == 1}">|---- </g:if>
+                                    <g:if test="${sysPermitInstance.level == 2}">|-------- </g:if>
+                                    ${sysPermitInstance.permitName}<br>
+                                </g:each>
+                                %{--<g:fieldValue bean="${sysRoleInstance}" field="description"/>--}%
+                                <g:link controller="sysRole" action="configPermits" resource="${sysRoleInstance}" class="btn btn-primary btn-outline"><g:message code="sysPermit.view.configPermits.label" /></g:link>
+                            </td>
+                        </tr>
+                    </g:if>
                     </tbody>
                 </table>
             </div>
