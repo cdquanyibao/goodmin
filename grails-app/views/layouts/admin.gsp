@@ -296,6 +296,9 @@
                         <li>
                             <g:link controller="sysPermit" action="index"><i class="fa fa-user fa-fw"></i> ${message(code: 'default.goodmin.menu.config.permit')}</g:link>
                         </li>
+                        <li>
+                            <g:link controller="login" action="index"><i class="fa fa-user fa-fw"></i> ${message(code: 'default.goodmin.menu.login')}</g:link>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

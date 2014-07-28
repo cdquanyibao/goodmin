@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>登录管理系统</title>
+    <title><g:message code="default.goodmin.page.login.title" /></title>
 
     <!-- Core CSS - Include with every page -->
     <asset:stylesheet src="bootstrap.min.css"/>
@@ -33,26 +33,27 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">请登录</h3>
+                    <h3 class="panel-title"><g:message code="default.goodmin.page.login.title" /></h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form">
+                    <g:form controller="login" action="authenticate" method="POST">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="用户名" name="email" type="email" autofocus>
+                                <input class="form-control" placeholder="<g:message code='default.goodmin.page.login.loginName' />" name="loginName" type="text" autofocus>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="密码" name="password" type="password" value="">
+                                <input class="form-control" placeholder="<g:message code='default.goodmin.page.login.loginPWD' />" name="loginPWD" type="password" value="">
                             </div>
-                            <div class="checkbox">
+%{--                            <div class="checkbox">
                                 <label>
                                     <input name="remember" type="checkbox" value="Remember Me">记住我
                                 </label>
-                            </div>
+                            </div>--}%
                             <!-- Change this to a button or input when using this as a form -->
-                            <a href="/goodmin" class="btn btn-lg btn-success btn-block">登录</a>
+                            <g:submitButton name="submit" class="btn btn-lg btn-success btn-block" value="${message(code: 'default.goodmin.page.login.button')}" />
+                            %{--<button class="btn btn-lg btn-success btn-block"><g:message code='default.goodmin.page.login.button' /></button>--}%
                         </fieldset>
-                    </form>
+                    </g:form>
                 </div>
             </div>
         </div>
