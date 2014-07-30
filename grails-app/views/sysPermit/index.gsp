@@ -50,12 +50,5 @@
 
 <g:render template="/shared/pageFooter" />
 
-<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script>
-    $(document).ready() {
-
-    };
-</script>
-
 	</body>
 </html>

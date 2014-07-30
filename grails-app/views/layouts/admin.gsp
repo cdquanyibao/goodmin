@@ -45,7 +45,9 @@
         </div>
         <!-- /.navbar-header -->
     <ul class="nav navbar-top-links navbar-right">
-    <li class="dropdown">
+
+
+%{--    <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
@@ -234,22 +236,31 @@
         </ul>
         <!-- /.dropdown-alerts -->
     </li>
-    <!-- /.dropdown -->
+    <!-- /.dropdown -->--}%
+
+    <!-- 用户区 -->
+    <g:if test="${session.user}">
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            <i class="fa fa-user fa-fw"></i>  ${session.user.realName} [${session.userRole.roleName}] <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
-            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-            </li>
-            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+            <li>
+                <g:link controller="opAdmin" action="show" id="${session.user.id}"><i class="fa fa-user fa-fw"></i> <g:message code="goodmin.block.user.show"/></g:link>
             </li>
             <li class="divider"></li>
-            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            <li><g:link controller="login" action="logout"><i class="fa fa-sign-out fa-fw"></i> <g:message code="goodmin.block.user.logout" /></a></g:link>
             </li>
         </ul>
         <!-- /.dropdown-user -->
     </li>
+    </g:if>
+    <g:else>
+        <li>
+            <g:link controller="login" action="login"><i class="fa fa-user fa-fw"></i> <g:message code="goodmin.block.user.login"/></g:link>
+        </li>
+    </g:else>
+
     <!-- /.dropdown -->
     </ul>
     <!-- /.navbar-top-links -->
@@ -271,16 +282,17 @@
 
                 <!-- ============= Goodmin menu start ============= -->
                 <g:each in="${com.yuyusoft.goodmin.SysPermit.findAllWhere(level: 0, [cache: true])}" var="sysPermitMenu">
+                    <g:findAll in="${session.userRole?.sysPermits}" expr="it.id == sysPermitMenu.id">
                     <li>
                         %{--<g:if test="${session.userPermitUrls!=null && session.userPermitUrls.indexOf(sysPermitMenu.permitUrl) >= 0}">--}%
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> ${sysPermitMenu.permitName}<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <g:each in="${com.yuyusoft.goodmin.SysPermit.findAllByLevelAndParent(1, sysPermitMenu.idx, [cache: true])}" var="sysPermitMenu2">
-                                <g:if test="${session.userPermitUrls?.indexOf(sysPermitMenu2.permitUrl) >= 0}">
+                                <g:hasPermit uri="${sysPermitMenu2.permitUrl}">
                                 <li>
                                     <g:link uri="${sysPermitMenu2.permitUrl}"><i class="fa fa-user fa-fw"></i> ${sysPermitMenu2.permitName}</g:link>
                                 </li>
-                                </g:if>
+                                </g:hasPermit>
                             </g:each>
 %{--                            <li>
                                 <g:link controller="opAdmin" action="index"><i class="fa fa-user fa-fw"></i> ${message(code: 'default.goodmin.menu.system.administrator')}</g:link>
@@ -292,6 +304,7 @@
                         %{--</g:if>--}%
                         <!-- /.nav-second-level -->
                     </li>
+                    </g:findAll>
                 </g:each>
 
                 <li>

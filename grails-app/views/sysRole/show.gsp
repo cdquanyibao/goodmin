@@ -40,8 +40,9 @@
                                 <g:each in="${sysRoleInstance.sysPermits}" var="sysPermitInstance">
                                     <g:if test="${sysPermitInstance.level == 1}">${sysPermitInstance.permitName} </g:if>
                                 </g:each><br><br>
-                                %{--<g:fieldValue bean="${sysRoleInstance}" field="description"/>--}%
-                                <g:link controller="sysRole" action="configPermits" resource="${sysRoleInstance}" class="btn btn-primary btn-outline"><g:message code="sysPermit.view.configPermits.label" /></g:link>
+                                <g:hasPermit uri="/sysRole/configPermits">
+                                    <g:link controller="sysRole" action="configPermits" resource="${sysRoleInstance}" class="btn btn-primary btn-outline"><g:message code="sysPermit.view.configPermits.label" /></g:link>
+                                </g:hasPermit>
                             </td>
                         </tr>
                     </g:if>

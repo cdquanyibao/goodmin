@@ -8,7 +8,12 @@ class LoginController {
 
     def login = {}
 
-    def logout = {}
+    def logout = {
+        session.user = null
+        session.userRole = null
+        session.usePermitUrls = null
+        redirect controller: 'login', action: 'login'
+    }
 
     def authenticate = {
 
@@ -36,18 +41,9 @@ class LoginController {
                         }
                     }
                 }
-
                 session.userPermitUrls = userPermitUrls
 
-                if (user.id == 1) {
-                    SysPermit.findAll().each {
-                        if (it.permitUrl) {
-                            userPermitUrls = userPermitUrls + it.permitUrl + ";"
-                        }
-                    }
-                }
-
-                println(">>> user login: " + session.user + ", urls: " + session.userPermitUrls)
+                println(">>> user login: " + session.user + ", userRole.sysPermits=" + session.userRole.sysPermits + " , urls: " + session.userPermitUrls)
                 redirect uri: "/"
                 return
             }

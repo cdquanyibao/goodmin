@@ -30,7 +30,9 @@
                         <g:message code="default.list.label" args="[entityName]" />
                     </div>
                     <div class="col-lg-4 text-right">
-                        <g:link controller="${controllerName}" action="create" class="btn btn-primary"><g:message code="default.new.label" args="[entityName]" /></g:link>
+                        <g:hasPermit uri="/${controllerName}/create">
+                            <g:link controller="${controllerName}" action="create" class="btn btn-primary"><g:message code="default.new.label" args="[entityName]" /></g:link>
+                        </g:hasPermit>
                         <button type="button" class="btn btn-success btn-outline" onclick="history.go(0)"><i class="fa fa-refresh"></i></button>
                     </div>
                 </g:if>

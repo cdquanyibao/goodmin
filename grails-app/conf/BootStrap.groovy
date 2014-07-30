@@ -16,13 +16,29 @@ class BootStrap {
                 println(">>> Init errors: " + superAdminRole.errors)
             }
 
+            // 普通管理员角色
+            def adminRole = new SysRole(roleName: "系统管理员", description: "拥有系统管理权限")
+            adminRole.save()
+            if (adminRole.hasErrors()) {
+                println(">>> Init errors: " + adminRole.errors)
+            }
+
             // 超级管理员账号
-            def superAdmin = new OpAdmin(id: 0, loginName: "admin", loginPWD: "123", realName: "超级管理员", status: 1)
+            def superAdmin = new OpAdmin(id: 0, loginName: "super_admin", loginPWD: "123", realName: "超级管理员", status: 1)
             superAdmin.save()
             if (superAdmin.hasErrors()) {
                 println(">>> Init errors: " + superAdmin.errors)
             } else {
                 superAdmin.sysRole = superAdminRole
+            }
+
+            // 普通管理员账号
+            def admin = new OpAdmin(id: 0, loginName: "admin", loginPWD: "123", realName: "系统管理员", status: 1)
+            admin.save()
+            if (admin.hasErrors()) {
+                println(">>> Init errors: " + admin.errors)
+            } else {
+                admin.sysRole = adminRole
             }
 
         }

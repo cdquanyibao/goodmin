@@ -39,7 +39,9 @@
                             <td><g:formatDate date="${sysRoleInstance.lastUpdated}" /></td>
                             <td><g:render template="/shared/indexOperButtons" model="[instance: sysRoleInstance]"/></td>
                             <td>
-                                <g:link controller="sysRole" action="configPermits" resource="${sysRoleInstance}" class="btn btn-success btn-outline btn-xs"><g:message code="sysPermit.view.configPermits.label" /></g:link>
+                                <g:hasPermit uri="/sysRole/configPermits">
+                                    <g:link controller="sysRole" action="configPermits" resource="${sysRoleInstance}" class="btn btn-success btn-outline btn-xs"><g:message code="sysPermit.view.configPermits.label" /></g:link>
+                                </g:hasPermit>
                             </td>
                         </tr>
                     </g:each>

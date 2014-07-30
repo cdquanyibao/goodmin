@@ -30,7 +30,7 @@
                     </button>
                 </div>
                 <div class="col-sm-5">
-                    <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:submitButton name="edit" class="btn btn-primary" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </div>
             </div>
         </g:form>
@@ -82,8 +82,12 @@
         </div>
         <div class="col-sm-5">
             <g:form url="[resource:instance, action:'delete']" method="DELETE">
-                <g:link controller="${controllerName}" action="edit" resource="${instance}" class="btn btn-primary"><g:message code="default.button.update.label" /></g:link>
-                <g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                <g:hasPermit uri="/${controllerName}/edit">
+                    <g:link controller="${controllerName}" action="edit" resource="${instance}" class="btn btn-primary"><g:message code="default.button.update.label" /></g:link>
+                </g:hasPermit>
+                <g:hasPermit uri="/${controllerName}/delete">
+                    <g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                </g:hasPermit>
             </g:form>
         </div>
     </div>
