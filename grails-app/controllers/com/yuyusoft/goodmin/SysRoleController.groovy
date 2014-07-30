@@ -59,9 +59,13 @@ class SysRoleController {
         redirect sysRoleInstance
     }
 
-    def index(Integer max) {
+/*    def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond SysRole.list(params), model: [sysRoleInstanceCount: SysRole.count()]
+    }*/
+
+    def index() {
+        respond SysRole.list(), model: [sysRoleInstanceCount: SysRole.count()]
     }
 
     def show(SysRole sysRoleInstance) {

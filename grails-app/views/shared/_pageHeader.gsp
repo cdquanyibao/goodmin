@@ -3,6 +3,7 @@
     <div class="col-lg-12">
         <h3 class="page-header">
             <div class="row">
+                <g:hiddenField name="action" value="${actionName}"></g:hiddenField>
                 <!-- if create page -->
                 <g:if test="${'create' == actionName}">
                     <div class="col-lg-8">
@@ -14,7 +15,7 @@
                 </g:if>
 
                 <!-- if edit page -->
-                <g:if test="${'edit' == actionName}">
+                <g:if test="${actionName in ['edit', 'update']}">
                     <div class="col-lg-8">
                         <g:message code="default.edit.label" args="[entityName]" />
                     </div>

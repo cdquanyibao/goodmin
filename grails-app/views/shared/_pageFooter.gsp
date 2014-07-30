@@ -18,7 +18,7 @@
 </g:if>
 
 <!-- if edit page -->
-<g:if test="${'edit' == actionName}">
+<g:if test="${actionName in ['edit', 'update']}">
     <div class="row">
         <g:form url="[resource:instance, action:'update']" method="PUT" class="form-horizontal">
             <g:hiddenField name="version" value="${instance?.version}" />

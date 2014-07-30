@@ -32,12 +32,14 @@
                         <tr>
                             <td class="col-lg-1 text-primary"><g:message code="sysRole.sysPermits.label"/></td>
                             <td class="col-lg-5">
+                                <g:message code="sysPermit.view.configPermits.menu.label" />: <br>
                                 <g:each in="${sysRoleInstance.sysPermits}" var="sysPermitInstance">
-                                    <g:if test="${sysPermitInstance.level == 0}">| </g:if>
-                                    <g:if test="${sysPermitInstance.level == 1}">|---- </g:if>
-                                    <g:if test="${sysPermitInstance.level == 2}">|-------- </g:if>
-                                    ${sysPermitInstance.permitName}<br>
-                                </g:each>
+                                    <g:if test="${sysPermitInstance.level == 0}">${sysPermitInstance.permitName} </g:if>
+                                </g:each><br><br>
+                                <g:message code="sysPermit.view.configPermits.menu.sub.label" />: <br>
+                                <g:each in="${sysRoleInstance.sysPermits}" var="sysPermitInstance">
+                                    <g:if test="${sysPermitInstance.level == 1}">${sysPermitInstance.permitName} </g:if>
+                                </g:each><br><br>
                                 %{--<g:fieldValue bean="${sysRoleInstance}" field="description"/>--}%
                                 <g:link controller="sysRole" action="configPermits" resource="${sysRoleInstance}" class="btn btn-primary btn-outline"><g:message code="sysPermit.view.configPermits.label" /></g:link>
                             </td>

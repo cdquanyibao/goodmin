@@ -17,12 +17,10 @@
 
     <!-- Core CSS - Include with every page -->
     <asset:stylesheet src="bootstrap.min.css"/>
-    %{--<link href="css/bootstrap.min.css" rel="stylesheet">--}%
-    %{--<link href="font-awesome/css/font-awesome.css" rel="stylesheet">--}%
+    <asset:stylesheet src="font-awesome/css/font-awesome.css"/>
 
     <!-- SB Admin CSS - Include with every page -->
     <asset:stylesheet src="sb-admin.css"/>
-    %{--<link href="css/sb-admin.css" rel="stylesheet">--}%
 
 </head>
 
@@ -38,6 +36,11 @@
                 <div class="panel-body">
                     <g:form controller="login" action="authenticate" method="POST">
                         <fieldset>
+                            <g:if test="${flash.message}">
+                                <div class="form-group">
+                                    <div class="alert alert-danger" role="alert" style="padding: 8px"><i class="fa fa-warning"></i> ${flash.message}</div>
+                                </div>
+                            </g:if>
                             <div class="form-group">
                                 <input class="form-control" placeholder="<g:message code='default.goodmin.page.login.loginName' />" name="loginName" type="text" autofocus>
                             </div>

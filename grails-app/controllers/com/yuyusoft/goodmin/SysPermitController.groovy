@@ -10,9 +10,13 @@ class SysPermitController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+/*    def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond SysPermit.list(params), model: [sysPermitInstanceCount: SysPermit.count()]
+    }*/
+
+    def index() {
+        respond SysPermit.list(), model: [sysPermitInstanceCount: SysPermit.count()]
     }
 
     def show(SysPermit sysPermitInstance) {

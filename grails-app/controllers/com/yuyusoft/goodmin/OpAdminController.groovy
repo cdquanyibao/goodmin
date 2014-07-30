@@ -8,9 +8,13 @@ class OpAdminController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+/*    def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond OpAdmin.list(params), model: [opAdminInstanceCount: OpAdmin.count()]
+    }*/
+
+    def index() {
+        respond OpAdmin.list(), model: [opAdminInstanceCount: OpAdmin.count()]
     }
 
     def show(OpAdmin opAdminInstance) {
