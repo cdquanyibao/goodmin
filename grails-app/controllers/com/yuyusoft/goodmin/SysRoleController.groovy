@@ -43,7 +43,7 @@ class SysRoleController {
             return
         }
 
-        flash.message = message(code: "default.saved.message")
+        flash.message = message(code: "default.saved.permits.message")
 
         redirect sysRoleInstance
     }

@@ -1,5 +1,7 @@
 package goodmin
 
+import java.text.SimpleDateFormat
+
 class AdminTagLib {
     // defaultEncodeAs和encodeAsForTags控制返回的是否parse为html
 //    static defaultEncodeAs = [taglib:'html']
@@ -45,5 +47,9 @@ class AdminTagLib {
             </div>
         </div>
 */
+    }
+
+    def dateFormat = { attrs, body ->
+        out << new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date())
     }
 }
