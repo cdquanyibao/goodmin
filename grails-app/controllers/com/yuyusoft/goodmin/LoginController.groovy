@@ -22,7 +22,10 @@ class LoginController {
         def user = OpAdmin.findByLoginName(params.loginName)
 
         if (user) {
-            if (params.loginPWD == user.loginPWD) {
+            println "params.loginPWD.encodeAsMD5()=" + params.loginPWD.encodeAsMD5()
+            println "user.loginPWD=" + user.loginPWD
+
+            if (params.loginPWD.encodeAsMD5() == user.loginPWD) {
                 session.user = user
                 session.userRole = user.sysRole
 

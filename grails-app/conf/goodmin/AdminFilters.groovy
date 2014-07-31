@@ -19,6 +19,11 @@ class AdminFilters {
                     return true
                 }
 
+                // if user change his password, ok, pass
+                if (controllerName == 'opAdmin' && actionName in ['changePassword', 'updatePassword']) {
+                    return true
+                }
+
                 // has permits
                 def currentUrl = "/" + controllerName + "/" + (actionName == null ? "" : actionName)
                 if (! session.userPermitUrls || session.userPermitUrls.indexOf(currentUrl) < 0) {

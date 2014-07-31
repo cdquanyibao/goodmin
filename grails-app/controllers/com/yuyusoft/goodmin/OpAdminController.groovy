@@ -13,6 +13,77 @@ class OpAdminController {
         respond OpAdmin.list(params), model: [opAdminInstanceCount: OpAdmin.count()]
     }*/
 
+    def changePassword(OpAdmin opAdminInstance) {
+        // 修改个人密码不受全局过滤器影响
+        if (session.user == null) {
+            redirect controller: 'login', action: 'login'
+        }
+
+        // cannot change other's password
+        if (session.user.id != opAdminInstance.id) {
+            redirect controller: 'login', action: 'deny'
+            return
+        }
+
+        respond opAdminInstance
+    }
+
+    @Transactional
+    def updatePassword(OpAdmin opAdminInstance) {
+        if (opAdminInstance == null) {
+            notFound()
+            return
+        }
+
+        // 修改个人密码不受全局过滤器影响
+        if (session.user == null) {
+            redirect controller: 'login', action: 'login'
+        }
+
+        // cannot change other's password
+        if (session.user.id != opAdminInstance.id) {
+            redirect controller: 'login', action: 'deny'
+            return
+        }
+
+        if (opAdminInstance.hasErrors()) {
+            respond opAdminInstance.errors, view: 'changePassword'
+            return
+        }
+
+//        println ">>> updatePassword params: " + params.toQueryString()
+
+        if (params.newPassword != params.newPasswordConfirm) {
+            flash.message = message(code: 'opAdmin.oper.updatePassword.error.notsame')
+            respond opAdminInstance, view: 'changePassword'
+            return
+        }
+
+        if (params.oldPassword.encodeAsMD5() != opAdminInstance.loginPWD) {
+            flash.message = message(code: 'opAdmin.oper.updatePassword.error.wrong')
+            respond opAdminInstance, view: 'changePassword'
+            return
+        }
+
+        opAdminInstance.loginPWD = params.newPassword.encodeAsMD5()
+
+        try {
+            opAdminInstance.save flush: true
+        } catch (Exception e) {
+            log.error(e.toString(), e)
+            respond opAdminInstance.errors, view: 'changePassword'
+            return
+        }
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.password.message', args: [message(code: 'opAdmin.label', default: 'OpAdmin')])
+                redirect opAdminInstance
+            }
+            '*' { respond opAdminInstance, [status: OK] }
+        }
+    }
+
     def index() {
         respond OpAdmin.list(), model: [opAdminInstanceCount: OpAdmin.count()]
     }

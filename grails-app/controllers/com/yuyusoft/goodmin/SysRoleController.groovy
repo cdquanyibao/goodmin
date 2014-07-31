@@ -11,26 +11,19 @@ class SysRoleController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def configPermits(SysRole sysRoleInstance) {
-        println ">>> configPermits"
+//        println ">>> configPermits"
         respond sysRoleInstance
     }
 
     @Transactional
     def savePermits(SysRole sysRoleInstance) {
-        println ">>> ${sysRoleInstance.roleName}"
-        println ">>> params: " + params.toQueryString()
 
         // clean all sysPermits of sysRoleInstance
         sysRoleInstance.sysPermits = null
 
         params.each {
-            println(">>> key=" + it.key + ", value=" + it.value)
-
             if (it.value == "on") {
-
                 def sysPermitInstance = SysPermit.get(it.key)
-                println "get key >>> " + sysPermitInstance.permitName
-
                 sysRoleInstance.addToSysPermits(sysPermitInstance)
             }
         }
@@ -45,16 +38,12 @@ class SysRoleController {
             sysRoleInstance.save flush: true
         } catch (Exception e) {
             log.error(e.toString(), e)
-            sysRoleInstance.errors.putAt("sysPermits", e)
+//            sysRoleInstance.errors.putAt("sysPermits", e)
             respond sysRoleInstance.errors, view: 'show'
             return
         }
 
         flash.message = message(code: "default.saved.message")
-
-        sysRoleInstance.sysPermits.each {
-            println("+++" + it.permitUrl)
-        }
 
         redirect sysRoleInstance
     }

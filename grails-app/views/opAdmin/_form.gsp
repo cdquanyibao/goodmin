@@ -8,12 +8,14 @@
     </div>
 </div>
 
+<g:if test="${actionName in ['create', 'save']}">
 <div class="form-group">
     <label for="loginPWD" class="col-sm-1 control-label"><g:message code="opAdmin.loginPWD.label" /></label>
     <div class="col-sm-5">
         <g:field name="loginPWD" type="password" required="" value="${opAdminInstance?.loginPWD}" class="form-control"/>
     </div>
 </div>
+</g:if>
 
 <div class="form-group">
     <label for="realName" class="col-sm-1 control-label"><g:message code="opAdmin.realName.label" /></label>

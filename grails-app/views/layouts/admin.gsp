@@ -248,6 +248,9 @@
             <li>
                 <g:link controller="opAdmin" action="show" id="${session.user.id}"><i class="fa fa-user fa-fw"></i> <g:message code="goodmin.block.user.show"/></g:link>
             </li>
+            <li>
+                <g:link controller="opAdmin" action="changePassword" id="${session.user.id}"><i class="fa fa-user fa-fw"></i> <g:message code="goodmin.block.user.password"/></g:link>
+            </li>
             <li class="divider"></li>
             <li><g:link controller="login" action="logout"><i class="fa fa-sign-out fa-fw"></i> <g:message code="goodmin.block.user.logout" /></a></g:link>
             </li>

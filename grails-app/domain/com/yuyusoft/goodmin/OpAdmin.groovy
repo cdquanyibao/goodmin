@@ -31,15 +31,15 @@ class OpAdmin {
     }
 
 
-//    def beforeInsert() {
-//        println(">>> beforeInsert: loginPWD=" + loginPWD)
-//        loginPWD = loginPWD.encodeAsMD5();
-//        println(">>> after beforeInsert: loginPWD=" + loginPWD)
-//    }
-//
-//    def beforeUpdate() {
-//        println(">>> beforeUpdate: loginPWD=" + loginPWD)
-//        loginPWD = loginPWD.encodeAsMD5();
-//        println(">>> after beforeUpdate: loginPWD=" + loginPWD)
-//    }
+    def beforeInsert() {
+        println(">>> beforeInsert: loginPWD=" + loginPWD)
+        loginPWD = loginPWD.encodeAsMD5()
+        println(">>> after beforeInsert: loginPWD=" + loginPWD)
+    }
+
+/*    def beforeUpdate() {
+        println(">>> beforeUpdate: loginPWD=" + loginPWD)
+        loginPWD = loginPWD.encodeAsMD5();
+        println(">>> after beforeUpdate: loginPWD=" + loginPWD)
+    }*/
 }

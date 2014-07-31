@@ -7,10 +7,43 @@ class AdminTagLib {
 
     static defaultEncodeAs = [taglib:'none']
 
+    /**
+     * 是否具有attrs.uri中所有的权限
+     */
     def hasPermit = { attrs, body ->
 //        println ">>> uri=" + attrs.uri + ", check:" + session.userPermitUrls
         if (session.userPermitUrls?.indexOf(attrs.uri) >= 0 || session.user?.id == 1) {
             out << body()
         }
+    }
+
+    /**
+     * 简单的页面标题，attrs.content表示内容
+     */
+    def simplePageHead = { attrs, body ->
+        out << "<div class=\"row\">"
+        out << "<div class=\"col-lg-12\">"
+        out << "<h3 class=\"page-header\">"
+        out << "<div class=\"row\">"
+        out << "<div class=\"col-lg-8\">"
+        out << attrs.content
+        out << "</div>"
+        out << "</div>"
+        out << "</h3>"
+        out << "</div>"
+        out << "</div>"
+/*
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                <div class="row">
+                    <div class="col-lg-8">
+                        ${opAdminInstance} - <g:message code="opAdmin.view.changePassword.label" />
+                    </div>
+                </div>
+                </h3>
+            </div>
+        </div>
+*/
     }
 }
