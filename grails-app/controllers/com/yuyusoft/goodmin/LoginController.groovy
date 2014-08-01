@@ -9,9 +9,13 @@ class LoginController {
     def login = {}
 
     def logout = {
+
+        SysLogUtils.trace(request, session, message(code: 'trace.goodmin.logout', args: [session.userRole?.roleName]))
+
         session.user = null
         session.userRole = null
         session.usePermitUrls = null
+
         redirect controller: 'login', action: 'login'
     }
 
@@ -47,6 +51,9 @@ class LoginController {
                 session.userPermitUrls = userPermitUrls
 
                 println(">>> user login: " + session.user + ", userRole.sysPermits=" + session.userRole.sysPermits + " , urls: " + session.userPermitUrls)
+
+                SysLogUtils.trace(request, session, message(code: 'trace.goodmin.login', args: [session.userRole?.roleName]))
+
                 redirect uri: "/"
                 return
             }

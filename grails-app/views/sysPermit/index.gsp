@@ -20,7 +20,7 @@
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                 <tr>
-                    <th>${message(code: 'sysPermit.id.label', default: '#')}</th>
+                    <th>${message(code: 'default.goodmin.id.label', default: '#')}</th>
                     <th>${message(code: 'sysPermit.permitName.label')}</th>
                     <th>${message(code: 'sysPermit.permitUrl.label')}</th>
                     <th>${message(code: 'sysPermit.idx.label')}</th>
@@ -57,7 +57,8 @@
 <asset:javascript src="excellentexport.js" />
 <a class="btn btn-primary" download="somedata.xls" href="#" onclick="return ExcellentExport.excel(this, 'dataTables-example', 'Sheet Name Here');">Export to Excel</a>
 --}%
-
+%{--<g:exportExcel tableid="dataTables-example" filename="${entityName}" sheetname="${entityName}" />--}%
+%{--<asset:javascript src="excellentexport.js" />--}%
 
 	</body>
 </html>

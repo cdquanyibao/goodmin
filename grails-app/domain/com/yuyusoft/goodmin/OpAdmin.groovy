@@ -32,9 +32,9 @@ class OpAdmin {
 
 
     def beforeInsert() {
-        println(">>> beforeInsert: loginPWD=" + loginPWD)
+//        println(">>> beforeInsert: loginPWD=" + loginPWD)
         loginPWD = loginPWD.encodeAsMD5()
-        println(">>> after beforeInsert: loginPWD=" + loginPWD)
+//        println(">>> after beforeInsert: loginPWD=" + loginPWD)
     }
 
 /*    def beforeUpdate() {

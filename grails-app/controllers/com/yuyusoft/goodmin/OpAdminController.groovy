@@ -75,6 +75,8 @@ class OpAdminController {
             return
         }
 
+        SysLogUtils.trace(request, session, message(code: 'trace.goodmin.update.password'))
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.password.message', args: [message(code: 'opAdmin.label', default: 'OpAdmin')])
@@ -119,6 +121,8 @@ class OpAdminController {
             return
         }
 
+        SysLogUtils.trace(request, session, message(code: 'trace.goodmin.save', args: [message(code: 'opAdmin.label'), opAdminInstance]))
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'opAdmin.label', default: 'OpAdmin'), opAdminInstance])
@@ -152,6 +156,8 @@ class OpAdminController {
             return
         }
 
+        SysLogUtils.trace(request, session, message(code: 'trace.goodmin.update', args: [message(code: 'opAdmin.label'), opAdminInstance]))
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'opAdmin.label', default: 'OpAdmin'), opAdminInstance])
@@ -176,6 +182,8 @@ class OpAdminController {
             respond opAdminInstance.errors, view: 'index'
             return
         }
+
+        SysLogUtils.trace(request, session, message(code: 'trace.goodmin.delete', args: [message(code: 'opAdmin.label'), opAdminInstance]))
 
         request.withFormat {
             form multipartForm {

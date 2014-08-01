@@ -43,9 +43,15 @@ class SysRoleController {
             return
         }
 
-        flash.message = message(code: "default.saved.permits.message")
+        SysLogUtils.trace(request, session, message(code: 'trace.goodmin.update.configPermits', args: [sysRoleInstance]))
 
-        redirect sysRoleInstance
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.saved.permits.message')
+                redirect sysRoleInstance
+            }
+            '*' { respond sysRoleInstance, [status: OK] }
+        }
     }
 
 /*    def index(Integer max) {
@@ -85,6 +91,8 @@ class SysRoleController {
             return
         }
 
+        SysLogUtils.trace(request, session, message(code: 'trace.goodmin.save', args: [message(code: 'sysRole.label'), sysRoleInstance]))
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'sysRole.label', default: 'SysRole'), sysRoleInstance.roleName])
@@ -118,6 +126,8 @@ class SysRoleController {
             return
         }
 
+        SysLogUtils.trace(request, session, message(code: 'trace.goodmin.update', args: [message(code: 'sysRole.label'), sysRoleInstance]))
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'sysRole.label', default: 'SysRole'), sysRoleInstance.roleName])
@@ -145,6 +155,8 @@ class SysRoleController {
             redirect(action: 'show', id: sysRoleInstance.id)
             return
         }
+
+        SysLogUtils.trace(request, session, message(code: 'trace.goodmin.delete', args: [message(code: 'sysRole.label'), sysRoleInstance]))
 
         request.withFormat {
             form multipartForm {

@@ -49,7 +49,18 @@ class AdminTagLib {
 */
     }
 
+    /**
+     * 输出当前时间
+     */
     def dateFormat = { attrs, body ->
         out << new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date())
+    }
+
+    /**
+     * 导出excel按钮
+     */
+    def exportExcel = { attrs, body ->
+//        out << "<asset:javascript src=\"excellentexport.js\" />"
+        out << "<a class=\"btn btn-primary\" download=\"" + attrs.filename + ".xls\" href=\"#\" onclick=\"return ExcellentExport.excel(this, '" + attrs.tableid + "', '" + attrs.sheetname + "');\">" + g.message(code: 'default.goodmin.excel.export') + "</a>"
     }
 }

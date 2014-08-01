@@ -1,7 +1,9 @@
 import com.yuyusoft.goodmin.OpAdmin
+import com.yuyusoft.goodmin.SysLog
 import com.yuyusoft.goodmin.SysPermit
 import com.yuyusoft.goodmin.SysRole
 import grails.util.GrailsUtil
+import org.codehaus.groovy.grails.commons.GrailsApplication
 
 class BootStrap {
 
@@ -42,8 +44,16 @@ class BootStrap {
             }
 
         }
+
+        def initLog = new SysLog(ip: "0.0.0.0", trace: "系统启动")
+        initLog.save()
+        if (initLog.hasErrors()) log.error(initLog.errors.toString())
     }
 
     def destroy = {
+
+        def destroyLog = new SysLog(ip: "0.0.0.0", trace: "系统关闭")
+        destroyLog.save()
+        if (destroyLog.hasErrors()) log.error(destroyLog.errors.toString())
     }
 }
