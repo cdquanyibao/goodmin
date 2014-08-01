@@ -47,6 +47,8 @@
     <script>
         $(document).ready(function() {
             var t = $('#dataTables-example').dataTable({
+                "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "${message(code: 'default.goodmin.page.all')}"] ],
+                "pageLength": 10,
                 "language": {
                     "lengthMenu": "${message(code: 'default.goodmin.table.lengthMenu')}",
                     "zeroRecords": "${message(code: 'default.goodmin.table.zeroRecords')}",

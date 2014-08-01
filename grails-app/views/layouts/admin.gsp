@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>管理系统 - <g:layoutTitle/></title>
+    <title><g:message code="default.goodmin.project.label" /> - gi<g:layoutTitle/></title>
 
     <!-- Core CSS - Include with every page -->
     <asset:stylesheet src="bootstrap.min.css"/>
@@ -41,7 +41,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">管理系统</a>
+            <g:link class="navbar-brand" uri="/"><g:message code="default.goodmin.project.label" /></g:link>
         </div>
         <!-- /.navbar-header -->
     <ul class="nav navbar-top-links navbar-right">
@@ -237,6 +237,10 @@
         <!-- /.dropdown-alerts -->
     </li>
     <!-- /.dropdown -->--}%
+
+    <li>
+        <g:link uri="/"><g:message code="default.goodmin.page.index.title" /></g:link>
+    </li>
 
     <!-- 用户区 -->
     <g:if test="${session.user}">
